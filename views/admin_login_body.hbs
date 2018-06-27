@@ -1,0 +1,46 @@
+<div class="main-wrapper">
+	<div class="account-page">
+		<div class="container">
+			<h3 class="account-title">S.D.Clicks - Admin Login</h3>
+			<div class="account-box">
+				<div class="account-wrapper">
+					<div class="account-logo">
+						<a href="#"><img src="/admin/assets/img/logo2.png" alt="Focus Technologies"></a>
+					</div>
+					{{#if message}}
+						<div class="alert alert-danger">
+							<strong>Error! </strong>{{message}}
+						</div>
+            		{{/if}}
+					<form action="/admin" method="POST">
+						<input type="hidden" name="_csrf" value="{{csrfToken}}">
+						<div class="form-group form-focus">
+							<label class="control-label">Username or Email</label>
+							<input class="form-control floating" type="text" name="email" id="name">
+						</div>
+						<div class="form-group form-focus">
+							<label class="control-label">Password</label>
+							<input class="form-control floating" type="password" name="password" id="password">
+						</div>
+						<div class="form-group text-center">
+							<button class="btn btn-primary btn-block account-btn" type="submit" id="admin_login">Login</button>
+						</div>
+						<div class="text-center">
+							<a href="forgot-password.html">Forgot your password?</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{{#content "script"  mode="append"}}
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                $(".alert").slideUp(500);
+            });
+		});
+
+	</script>
+{{/content}}
