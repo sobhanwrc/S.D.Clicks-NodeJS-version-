@@ -3,6 +3,7 @@ const passport = require('passport');
 const gravatar = require('gravatar');
 const bCrypt = require('bcrypt-nodejs');
 const User = require('../models/user');
+const Type = require('../models/type');
 const csrf = require('csurf');
 
 var csrfProtection = csrf({ cookie: true })
@@ -44,5 +45,69 @@ router.get('/add-admin', (req, res) => {
     user.save();
     res.send("Added successfully");
 });
+
+
+
+//for type listings view
+router.get('/admin/all-types-listings', async (req,res) => {
+    var all_type_details = await Type.find({ 
+        status: 1
+    });
+    res.render("admin/type/type_listings", {layout: "admin/admin_dashboard", type_details: all_type_details});
+});
+router.post('/admin/add-type', (req,res) => {
+    const type_add = new Type ({
+        type_name: req.body.type,
+        status: 1
+    });
+    if(type_add.save()){
+        res.json({
+            status: true,
+            msg: "Type added successfully."
+        });
+    }
+});
+router.post("/admin/fetch-type-details", async (req,res) => {
+    var details = await Type.findOne({
+        _id: req.body.id
+    });
+    res.json({
+        data: details
+    });
+});
+router.post('/admin/edit-type-change', (req,res) => {
+    Type.updateOne({ 
+        _id: req.body.id //matching with table id
+    },
+    { 
+        $set:{ 
+            type_name: req.body.type
+        } 
+    }).then(function(result) {
+        if(result){
+            res.json({
+                status: true,
+                msg: "Type name edit successfully."
+            });
+        }
+    });  
+});
+router.post("/admin/type-delete", (req,res) => {
+    Type.updateOne({
+        _id: req.body.id
+    },{
+        $set:{
+            status: 2
+        }
+    }).then(function (result) {
+        if(result) {
+            res.json({
+                status: true,
+                msg: "Type deleted successfully."
+            });
+        }
+    });
+});
+//end
 
 module.exports = router;

@@ -12,16 +12,20 @@
 							<strong>Error! </strong>{{message}}
 						</div>
             		{{/if}}
-					<form action="/admin" method="POST">
+					<form action="/admin" method="POST" name="admin_login_form" id="admin_login_form">
 						<input type="hidden" name="_csrf" value="{{csrfToken}}">
 						<div class="form-group form-focus">
 							<label class="control-label">Username or Email</label>
 							<input class="form-control floating" type="text" name="email" id="name">
 						</div>
+						<label for="name" class="error"></label>
+
 						<div class="form-group form-focus">
 							<label class="control-label">Password</label>
 							<input class="form-control floating" type="password" name="password" id="password">
 						</div>
+						<label for="password" class="error"></label>
+
 						<div class="form-group text-center">
 							<button class="btn btn-primary btn-block account-btn" type="submit" id="admin_login">Login</button>
 						</div>
@@ -40,6 +44,32 @@
 			$(".alert").fadeTo(2000, 500).slideUp(500, function(){
                 $(".alert").slideUp(500);
             });
+
+			$('#admin_login').on('click', function () {
+				var valid = $('#admin_login_form').valid();
+				if(valid){
+					$('#admin_login_form').submit;
+				}
+			});
+
+			$('#admin_login_form').validate({
+				rules:{
+					email:{
+						required: true
+					},
+					password: {
+						required: true
+					}
+				},
+				messages:{
+					email:{
+						required: "Please enter your email id."
+					},
+					password: {
+						required: "Please enter your password."
+					}
+				}
+			});
 		});
 
 	</script>

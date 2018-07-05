@@ -1,0 +1,452 @@
+<div class="page-wrapper">
+                <div class="content container-fluid">
+					<div class="row">
+						<div class="col-sm-8">
+							<h4 class="page-title">All Photography Types</h4>
+						</div>
+						<div class="col-sm-4 text-right m-b-30">
+							<a href="#" class="btn btn-primary rounded" data-toggle="modal" data-target="#add_types_modal"><i class="fa fa-plus"></i> Add New Types</a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div>
+								<table class="table table-striped custom-table m-b-0 type_datatable">
+									<thead>
+										<tr>
+											<th>Types Name</th>
+											<th class="text-right">Action</th>
+										</tr>
+									</thead>
+									<tbody>
+                                        {{#each type_details}}
+                                            <tr>
+                                                <td>{{this.type_name}}</td>
+                                                <td class="text-right">
+                                                    <div class="dropdown">
+                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                                        <ul class="dropdown-menu pull-right">
+                                                            <li><a href="#" title="Edit" data-row_id="{{this._id}}" class="type_edit_button"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
+
+                                                            <li><a href="#" title="Delete" data-row_id="{{this._id}}" class="type_delete_button"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {{/each}}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+                </div>
+				<div class="notification-box">
+					<div class="msg-sidebar notifications msg-noti">
+						<div class="topnav-dropdown-header">
+							<span>Messages</span>
+						</div>
+						<div class="drop-scroll msg-list-scroll">
+							<ul class="list-box">
+								<li>
+									<a href="chat.html">
+										<div class="list-item">
+											<div class="list-left">
+												<span class="avatar">R</span>
+											</div>
+											<div class="list-body">
+												<span class="message-author">Richard Miles </span>
+												<span class="message-time">12:28 AM</span>
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="chat.html">
+										<div class="list-item new-message">
+											<div class="list-left">
+												<span class="avatar">J</span>
+											</div>
+											<div class="list-body">
+												<span class="message-author">John Doe</span>
+												<span class="message-time">1 Aug</span>
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="chat.html">
+										<div class="list-item">
+											<div class="list-left">
+												<span class="avatar">T</span>
+											</div>
+											<div class="list-body">
+												<span class="message-author"> Tarah Shropshire </span>
+												<span class="message-time">12:28 AM</span>
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="chat.html">
+										<div class="list-item">
+											<div class="list-left">
+												<span class="avatar">M</span>
+											</div>
+											<div class="list-body">
+												<span class="message-author">Mike Litorus</span>
+												<span class="message-time">12:28 AM</span>
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="chat.html">
+										<div class="list-item">
+											<div class="list-left">
+												<span class="avatar">C</span>
+											</div>
+											<div class="list-body">
+												<span class="message-author"> Catherine Manseau </span>
+												<span class="message-time">12:28 AM</span>
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="chat.html">
+										<div class="list-item">
+											<div class="list-left">
+												<span class="avatar">D</span>
+											</div>
+											<div class="list-body">
+												<span class="message-author"> Domenic Houston </span>
+												<span class="message-time">12:28 AM</span>
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="chat.html">
+										<div class="list-item">
+											<div class="list-left">
+												<span class="avatar">B</span>
+											</div>
+											<div class="list-body">
+												<span class="message-author"> Buster Wigton </span>
+												<span class="message-time">12:28 AM</span>
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="chat.html">
+										<div class="list-item">
+											<div class="list-left">
+												<span class="avatar">R</span>
+											</div>
+											<div class="list-body">
+												<span class="message-author"> Rolland Webber </span>
+												<span class="message-time">12:28 AM</span>
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="chat.html">
+										<div class="list-item">
+											<div class="list-left">
+												<span class="avatar">C</span>
+											</div>
+											<div class="list-body">
+												<span class="message-author"> Claire Mapes </span>
+												<span class="message-time">12:28 AM</span>
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="chat.html">
+										<div class="list-item">
+											<div class="list-left">
+												<span class="avatar">M</span>
+											</div>
+											<div class="list-body">
+												<span class="message-author">Melita Faucher</span>
+												<span class="message-time">12:28 AM</span>
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="chat.html">
+										<div class="list-item">
+											<div class="list-left">
+												<span class="avatar">J</span>
+											</div>
+											<div class="list-body">
+												<span class="message-author">Jeffery Lalor</span>
+												<span class="message-time">12:28 AM</span>
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="chat.html">
+										<div class="list-item">
+											<div class="list-left">
+												<span class="avatar">L</span>
+											</div>
+											<div class="list-body">
+												<span class="message-author">Loren Gatlin</span>
+												<span class="message-time">12:28 AM</span>
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="chat.html">
+										<div class="list-item">
+											<div class="list-left">
+												<span class="avatar">T</span>
+											</div>
+											<div class="list-body">
+												<span class="message-author">Tarah Shropshire</span>
+												<span class="message-time">12:28 AM</span>
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="topnav-dropdown-footer">
+							<a href="chat.html">See all messages</a>
+						</div>
+					</div>
+				</div>
+            </div>
+			<div id="delete_types_modal" class="modal custom-modal fade" role="dialog">
+                <input type="hidden" id="delete_row_id" name="delete_row_id" value="">
+				<div class="modal-dialog">
+					<div class="modal-content modal-md">
+						<div class="modal-header">
+							<h4 class="modal-title">Delete Department</h4>
+						</div>
+						<div class="modal-body card-box">
+							<p>Are you sure want to delete this?</p>
+							<div class="m-t-20 text-left">
+								<a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+								<button type="submit" class="btn btn-danger" id="type_delete">Delete</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="add_types_modal" class="modal custom-modal fade" role="dialog">
+				<div class="modal-dialog">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<div class="modal-content modal-md">
+						<div class="modal-header">
+							<h4 class="modal-title">Add Types</h4>
+						</div>
+						<div class="modal-body">
+							<form name="add_type_form" id="add_type_form">
+								<div class="form-group">
+									<label>Type Name <span class="text-danger">*</span></label>
+									<input class="form-control"  type="text" name="type" id="type">
+								</div>
+								<div class="m-t-20 text-center">
+                                    <input type="button" name="type_submit" id="type_submit" class="btn btn-primary" value="Submit">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="edit_types_modal" class="modal custom-modal fade" role="dialog">
+				<div class="modal-dialog">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<div class="modal-content modal-md">
+						<div class="modal-header">
+							<h4 class="modal-title">Edit Types</h4>
+						</div>
+						<div class="modal-body">
+							<form name="edit_type_form" id="edit_type_form">
+                                <input type="hidden" name="row_id" id="row_id" value="">
+								<div class="form-group">
+									<label>Type Name <span class="text-danger">*</span></label>
+									<input class="form-control" name="edit_type_filed" id="edit_type_filed" value="" type="text">
+								</div>
+								<div class="m-t-20 text-center">
+                                    <input type="button" name="edit_type" id="edit_type" value="Edit" class="btn btn-primary">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+{{#content "admin_dashboard_script" mode="append"}}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#type_submit').on('click', function () {
+                var valid = $("#add_type_form").valid();
+                if(valid){
+                    $.ajax({
+                        type: "POST",
+                        url: "/admin/add-type",
+                        data: {
+                            type: $("#type").val()
+                        },
+                        success: function (resp) {
+                            if(resp.status == true){
+                                $.confirm({
+                                    theme: 'material',
+                                    title: "Confirm!",
+                                    content: resp.msg,
+                                    animation: 'scale',
+                                    type: 'orange',
+                                    buttons: {
+                                        Okay: function () {
+                                            window.location.reload();
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+
+            $("#add_type_form").validate({
+                rules:{
+                  type:{
+                      required: true
+                  }  
+                },
+                messages:{
+                    type:{
+                        required:"Please enter type name."
+                    }
+                }
+            });
+
+            $("#edit_type_form").validate({
+                rules:{
+                    edit_type_filedtype:{
+                        required: true
+                  }  
+                },
+                messages:{
+                    edit_type_filed:{
+                        required:"Please enter type name."
+                    }
+                }
+            });
+
+            $('.type_edit_button').on('click', function () {
+                var row_id = $(this).data('row_id');
+                $.ajax({
+                    type: "POST",
+                    url: "/admin/fetch-type-details",
+                    data:{
+                        id: row_id
+                    },
+                    success: function (resp) {
+                        console.log(resp.data);
+                        $("#row_id").val(row_id);
+                        $("#edit_type_filed").val(resp.data.type_name);
+                    }
+                });
+                $("#edit_types_modal").modal("show");
+            });
+
+            $("#edit_type").on('click', function () {
+                var valid = $("#edit_type_form").valid();
+                if(valid) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/admin/edit-type-change",
+                        data:{
+                            id: $("#row_id").val(),
+                            type: $("#edit_type_filed").val()
+                        }, 
+                        success: function (resp) {
+                            if(resp.status == true) {
+                                $.confirm({
+                                    theme: 'material',
+                                    title: "Confirm!",
+                                    content: resp.msg,
+                                    type: 'orange',
+                                    buttons: {
+                                        Okay: function () {
+                                            window.location.reload();
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+
+            $(".type_delete_button").on('click', function () {
+                var row_id = $(this).data('row_id');
+                $("#delete_row_id").val(row_id);
+
+                $("#delete_types_modal").modal("show");
+            });
+
+            $("#type_delete").on('click', function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/admin/type-delete",
+                    data:{
+                        id: $("#delete_row_id").val()
+                    },
+                    success: function (resp) {
+                        if(resp.status == true){
+                            $.confirm({
+                                theme: 'material',
+                                title: "Confirm!",
+                                content: resp.msg,
+                                type: 'orange',
+                                buttons: {
+                                    Okay: function () {
+                                        window.location.reload();
+                                    }
+                                }
+                            }); 
+                        }
+                    }
+                })
+            });
+        });
+    </script>
+{{/content}}
