@@ -4,6 +4,7 @@ const gravatar = require('gravatar');
 const bCrypt = require('bcrypt-nodejs');
 const User = require('../models/user');
 const Type = require('../models/type');
+const settings = require('../models/settings_list');
 const csrf = require('csurf');
 
 var csrfProtection = csrf({ cookie: true })
@@ -32,6 +33,26 @@ router.get('/admin/logout', (req, res) => {
     res.redirect('/admin');
 });
 
+
+
+// =====================================
+    // GOOGLE ROUTES =======================
+    // =====================================
+    // send to google to do the authentication
+    // profile gets us their basic information including their name
+    // email gets their emails
+    router.get('/admin/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+    // the callback after google has authenticated the user
+    router.get('/admin/callback/google',passport.authenticate('google', {
+        // successRedirect : '/profile',
+        failureRedirect : '/'
+    }), function (req,res) {
+        console.log(req.user, "after add in monogo db");
+        res.redirect("/admin/dashboard");
+    });
+    //end
+
 //for add to monogo db 
 router.get('/add-admin', (req, res) => {
     const avatar = gravatar.url("sobhan@wrctpl.com", {s: '200', r: 'pg', d: '404'});
@@ -48,7 +69,7 @@ router.get('/add-admin', (req, res) => {
 
 
 
-//for type listings view
+//for type of category
 router.get('/admin/all-types-listings', async (req,res) => {
     var all_type_details = await Type.find({ 
         status: 1
@@ -107,6 +128,54 @@ router.post("/admin/type-delete", (req,res) => {
             });
         }
     });
+});
+//end
+
+//for settings
+router.get('/admin/settings', async (req,res) => {
+    var all_setings_data = await settings.find();
+    res.render('admin/settings/settings', {layout: "admin/admin_dashboard", settings_data:all_setings_data[0]});
+});
+router.post("/admin/settings-save", async (req,res) => {
+    var if_data_exit = await settings.findOne({
+        _id: req.body.settings_row_id
+    });
+
+    if(Object.keys(if_data_exit).length > 0) {
+        settings.updateOne({
+            _id: req.body.settings_row_id
+        },{
+            $set: {
+                about_me: req.body.about_us,
+                phone_number: req.body.phone,
+                email: req.body.my_email,
+                fb_id: req.body.fb_id,
+                insta_id: req.body.insta_id
+            }
+        }).then(function (result) {
+            if(result){
+                res.json({
+                    status: true,
+                    msg: "Edit successfully."
+                });
+            }
+        });
+    }else{
+        var new_add = new settings({
+            about_me: req.body.about_us,
+            phone_number: req.body.phone,
+            email: req.body.my_email,
+            fb_id: req.body.fb_id,
+            insta_id: req.body.insta_id
+        });
+
+        if(new_add.save()){
+            res.json({
+                status: true,
+                msg: "Add successfully."
+            });
+        }
+    }
 });
 //end
 

@@ -1,0 +1,138 @@
+<div class="page-wrapper">
+	<div class="content container-fluid">
+		<div class="row">
+			<div class="col-sm-8">
+				<h4 class="page-title">Settings</h4>
+			</div>
+			<div class="col-sm-4 text-right m-b-30">
+				<a href="#" class="btn btn-primary rounded" data-toggle="modal" data-target="#add_types_modal"><i class="fa fa-plus"></i> Add New Types of Category</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div>
+                    <form name="settings_form" id="settings_form">
+                        <input type="hidden" name="settings_row_id" id="settings_row_id" value="{{settings_data.id}}">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">About Me <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" rows="" cols="" name="about_us" id="about_us">{{settings_data.about_me}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Email <span class="text-danger">*</span></label>
+                                    <input class="form-control floating" name="my_email" id="my_email" type="email" value="{{settings_data.email}}">
+                                </div>
+                            </div   >
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Phone </label>
+                                    <input class="form-control" name="phone" id="phone" type="text" value="{{settings_data.phone_number}}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Facebook Id</label>
+                                    <input class="form-control" name="fb_id" id="fb_id" type="text" value="{{settings_data.fb_id}}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Instagram Id</label>
+                                    <input class="form-control" name="insta_id" id="insta_id" type="text" value="{{settings_data.insta_id}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-t-20 text-center">
+                            <input type="button" class="btn btn-primary" name="settings_save" id="settings_save" value="Save">
+                        </div>
+                    </form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{#content "admin_dashboard_script" mode="append"}}
+<script type="text/javascript">
+    $(document).ready(function (){
+        $("#settings_form").validate({
+            rules:{
+                about_us:{
+                    required: true
+                },
+                my_email:{
+                    required: true
+                },
+                phone:{
+                    required: true
+                },
+                fb_id:{
+                    required: true
+                },
+                insta_id:{
+                    required: true
+                }
+            },
+            messages:{
+                about_us:{
+                    required: "About me field can't be left blank."
+                },
+                my_email:{
+                    required: "Please enter email."
+                },
+                phone:{
+                    required: "Please enter phone number."
+                },
+                fb_id:{
+                    required: "Please enter Facebook Id."
+                },
+                insta_id:{
+                    required: "Please enter Instagram Id."
+                }
+            }
+        });
+
+        $("#settings_save").on("click", function () {
+            var valid = $("#settings_form").valid();
+            if(valid){
+                var settings_row_id = $("#settings_row_id").val();
+                var about_us = $("#about_us").val();
+                var my_email = $("#my_email").val();
+                var phone = $("#phone").val();
+                var fb_id = $("#fb_id").val();
+                var insta_id = $("#insta_id").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/admin/settings-save",
+                    data:{
+                        settings_row_id: settings_row_id,
+                        about_us: about_us,
+                        my_email: my_email,
+                        phone: phone,
+                        fb_id: fb_id,
+                        insta_id: insta_id
+                    },
+                    success: function (resp) {
+                        if(resp.status == true) {
+                            $.confirm({
+                                theme: 'material',
+                                title: "Confirm!",
+                                content: resp.msg,
+                                type: 'orange',
+                                buttons: {
+                                    Okay: function () {
+                                        window.location.reload();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+{{/content}}

@@ -92,5 +92,3 @@ app.use(indexRoute);
 app.listen(port, () => console.log(`Server connected to ${port}`));
 
 module.exports = app;
-
-
