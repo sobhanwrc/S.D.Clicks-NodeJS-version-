@@ -7,6 +7,7 @@ const SettingsSchema = new Schema ({
     email: {type: String},
     fb_id: {type: String},
     insta_id: {type: String},
+    name_of_500px: {type: String},
     created_at: {type: Date, default: Date.now()}
 });
 

@@ -41,6 +41,7 @@ mongoose
 require('./config/passport')(passport);
 //include router//
 const indexRoute = require('./routes/index');
+const blogRoute = require('./routes/blog');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -85,8 +86,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-
 app.use(indexRoute);
+app.use(blogRoute);
 
 
 app.listen(port, () => console.log(`Server connected to ${port}`));

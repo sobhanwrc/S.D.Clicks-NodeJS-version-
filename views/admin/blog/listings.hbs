@@ -1,0 +1,54 @@
+<div class="page-wrapper">
+	<div class="content container-fluid">
+		<div class="row">
+			<div class="col-sm-8">
+				<h4 class="page-title">Blog</h4>
+			</div>
+			<div class="col-sm-4 text-right m-b-30">
+				<a href="/admin/add-blog" class="btn btn-primary rounded"><i class="fa fa-plus"></i> Add New Blog</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div>
+					<table class="table table-striped custom-table m-b-0" id="blog_datatable">
+						<thead>
+							<tr>
+								<th>Blog Name</th>
+                                <th>Category</th>
+								<th class="text-right">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each type_details}}
+								<tr>
+									<td>{{this.type_name}}</td>
+                                    <td></td>
+									<td class="text-right">
+										<div class="dropdown">
+											<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+											<ul class="dropdown-menu pull-right">
+												<li><a href="#" title="Edit" data-row_id="{{this._id}}" class="type_edit_button"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
+
+												<li><a href="#" title="Delete" data-row_id="{{this._id}}" class="type_delete_button"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{{#content "admin_dashboard_script" mode="append"}}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#blog_datatable').DataTable();
+        });
+    </script>
+{{/content}}

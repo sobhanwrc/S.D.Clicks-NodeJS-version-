@@ -62,7 +62,7 @@ module.exports = passport => {
         process.nextTick(function() {
             console.log(profile,'google data');
             // try to find the user based on their google id
-            User.findOne({ 'google.id' : profile.id }, function(err, user) {
+            User.findOne({ 'google_id' : profile.id }, function(err, user) {
                 if (err)
                     return done(err);
 
@@ -73,14 +73,18 @@ module.exports = passport => {
                 } else {
                     // if the user isnt in our database, create a new user
                     var user = new User({
+                        login_type: 'google',
                         email: profile.emails[0].value,
-                        avatar: profile.photos[0].value
+                        avatar: profile.photos[0].value,
+                        google_id    : profile.id,
+                        google_token : token,
+                        google_name  : profile.displayName
                     });
 
                     // set all of the relevant information
-                    // newUser.google.id    = profile.id;
-                    // newUser.google.token = token;
-                    // newUser.google.name  = profile.displayName;
+                    // newUser.google_id    = profile.id;
+                    // newUser.google_token = token;
+                    // newUser.google_name  = profile.displayName;
                     // newUser.google.email = profile.emails[0].value; // pull the first email
 
                     // save the user

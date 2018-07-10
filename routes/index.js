@@ -6,6 +6,10 @@ const User = require('../models/user');
 const Type = require('../models/type');
 const settings = require('../models/settings_list');
 const csrf = require('csurf');
+const Nexmo = require('nexmo');
+
+// load the auth variables
+var configAuth = require('../config/db');
 
 var csrfProtection = csrf({ cookie: true })
 
@@ -49,14 +53,32 @@ router.get('/admin/logout', (req, res) => {
         failureRedirect : '/'
     }), function (req,res) {
         console.log(req.user, "after add in monogo db");
+
+        //for send text SMS using NEXMO service.
+        const nexmo = new Nexmo({
+            apiKey: configAuth.nexmo.apiKey,
+            apiSecret: configAuth.nexmo.apiSecret
+        });
+        nexmo.message.sendSms(
+            '917890379068', '917278088825', 'Hey! Login successfully. ',(err, responseData) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.dir(responseData);
+                }
+            }
+        );
+        //end
+        
         res.redirect("/admin/dashboard");
     });
-    //end
+//end
 
 //for add to monogo db 
 router.get('/add-admin', (req, res) => {
     const avatar = gravatar.url("sobhan@wrctpl.com", {s: '200', r: 'pg', d: '404'});
     const user = new User({
+        login_type: 'normal_login',
         first_name: "Sobhan",
         last_name: "Das",
         email: "sobhan@wrctpl.com",
@@ -150,7 +172,8 @@ router.post("/admin/settings-save", async (req,res) => {
                 phone_number: req.body.phone,
                 email: req.body.my_email,
                 fb_id: req.body.fb_id,
-                insta_id: req.body.insta_id
+                insta_id: req.body.insta_id,
+                name_of_500px: req.body.name_of_500px
             }
         }).then(function (result) {
             if(result){

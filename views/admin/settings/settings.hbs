@@ -4,9 +4,6 @@
 			<div class="col-sm-8">
 				<h4 class="page-title">Settings</h4>
 			</div>
-			<div class="col-sm-4 text-right m-b-30">
-				<a href="#" class="btn btn-primary rounded" data-toggle="modal" data-target="#add_types_modal"><i class="fa fa-plus"></i> Add New Types of Category</a>
-			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
@@ -25,7 +22,13 @@
                                     <label class="control-label">Email <span class="text-danger">*</span></label>
                                     <input class="form-control floating" name="my_email" id="my_email" type="email" value="{{settings_data.email}}">
                                 </div>
-                            </div   >
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">500px <span class="text-danger">*</span></label>
+                                    <input class="form-control floating" name="name_of_500px" id="name_of_500px" type="text" value="{{settings_data.name_of_500px}}">
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Phone </label>
@@ -74,6 +77,9 @@
                 },
                 insta_id:{
                     required: true
+                },
+                name_of_500px:{
+                    required: true
                 }
             },
             messages:{
@@ -91,6 +97,9 @@
                 },
                 insta_id:{
                     required: "Please enter Instagram Id."
+                },
+                name_of_500px:{
+                    required: "Please enter 500px name."
                 }
             }
         });
@@ -104,6 +113,7 @@
                 var phone = $("#phone").val();
                 var fb_id = $("#fb_id").val();
                 var insta_id = $("#insta_id").val();
+                var name_of_500px = $("#name_of_500px").val();
                 $.ajax({
                     type: "POST",
                     url: "/admin/settings-save",
@@ -113,7 +123,8 @@
                         my_email: my_email,
                         phone: phone,
                         fb_id: fb_id,
-                        insta_id: insta_id
+                        insta_id: insta_id,
+                        name_of_500px: name_of_500px
                     },
                     success: function (resp) {
                         if(resp.status == true) {
