@@ -1,0 +1,107 @@
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <form name="blog_add_form" id="blog_add_form" action="/admin/add-blog-details" method="POST" enctype="multipart/form-data">
+                    <h3 class="page-title">Blog Page</h3>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label>Blog Header Name <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" value="" id="blog_header_name" name="blog_header_name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Blog Description</label>
+                                <textarea class="form-control" rows="" cols="" id="blog_description" name="blog_description"></textarea>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label>Blog Category</label>
+                                <select class="form-control select" name="blog_category" id="blog_category">
+                                    <option value="0">--Select Category--</option>
+                                    {{#each all_categories}}
+                                        <option value="{{this.id}}">{{this.type_name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Blog Banner Image</label>
+                                <input class="form-control" value="" type="file" name="blog_banner_image" id="blog_banner_image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Blog Image</label>
+                                <input class="form-control" value="" type="file" name="blog_image" id="blog_image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-center m-t-20">
+                            <input type="button" class="btn btn-primary" id="blog_add_submit" value="Save">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{#content "admin_dashboard_script" mode="append"}}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            CKEDITOR.replace( 'blog_description' );
+
+            $("#blog_add_form").validate({
+                rules:{
+                    blog_header_name:{
+                        required: true
+                    },
+                    blog_category:{
+                        required: true
+                    },
+                    blog_banner_image:{
+                        {{!-- required: true --}}
+                    },
+                    blog_image:{
+                        {{!-- required: true --}}
+                    }
+                },
+                messages:{
+                    blog_header_name:{
+                        required: "Please enter blog header name."
+                    },
+                    blog_category:{
+                        required: "Please select blog category."
+                    },
+                    {{!-- blog_banner_image:{
+                        required: true
+                    },
+                    blog_image:{
+                        required: true
+                    } --}}
+                }
+            });
+
+            $("#blog_add_submit").on('click', function () {
+                var valid = $("#blog_add_form").valid();
+                if(valid){
+                    $("#blog_add_form").submit();
+                }
+            });
+        });
+    </script>
+{{/content}}

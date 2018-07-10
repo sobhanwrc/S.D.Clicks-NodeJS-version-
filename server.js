@@ -11,7 +11,7 @@ const flash = require('connect-flash');
 const app = express();
 
 const db = require('./config/db').mongoURI;
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 7000;
 
 const handlebars = require('handlebars');
 const layouts = require('handlebars-layouts');
