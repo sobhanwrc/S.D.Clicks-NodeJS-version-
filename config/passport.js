@@ -5,6 +5,9 @@ const User = require('../models/user');
 //set strategy for google
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+//set strategy for instagram
+var InstagramStrategy = require('passport-instagram').Strategy;
+
 // load the auth variables
 var configAuth = require('./db');
 
@@ -81,19 +84,6 @@ module.exports = passport => {
                         google_name  : profile.displayName
                     });
 
-                    // set all of the relevant information
-                    // newUser.google_id    = profile.id;
-                    // newUser.google_token = token;
-                    // newUser.google_name  = profile.displayName;
-                    // newUser.google.email = profile.emails[0].value; // pull the first email
-
-                    // save the user
-                    // newUser.save(function(err) {
-                    //     if (err)
-                    //         throw err;
-                    //     return done(null, newUser);
-                    // });
-
                     if(user.save()){
                         return done(null, user);
                     }
@@ -101,4 +91,24 @@ module.exports = passport => {
             });
         });
     }));
+
+    //for instagram 
+    passport.use('instagram',
+        new InstagramStrategy({
+            clientID        : configAuth.instagramAuth.clientID,
+            clientSecret    : configAuth.instagramAuth.clientSecret,
+            callbackURL     : configAuth.instagramAuth.callbackURL
+      },
+      function(accessToken, refreshToken, profile, done) {
+
+        // asynchronous verification, for effect...
+        process.nextTick(function () {
+            console.log(profile,'instagram data');
+            return false;
+            User.findOrCreate({ instagramId: profile.id }, function (err, user) {
+            return done(err, user);
+            });
+        });
+      }
+    ));
 };

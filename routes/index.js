@@ -72,6 +72,17 @@ router.get('/admin/logout', (req, res) => {
         
         res.redirect("/admin/dashboard");
     });
+
+//==============================
+    //instagram routes ======
+//=============================
+    router.get('/admin/instagram', passport.authenticate('instagram'));
+
+    router.get('/admin/callback/instagram', passport.authenticate('instagram',{
+        failureRedirect : '/admin'
+    }), function (req,res) {
+        console.log(req.user, "after add in monogo db");
+    });
 //end
 
 //for add to monogo db 
