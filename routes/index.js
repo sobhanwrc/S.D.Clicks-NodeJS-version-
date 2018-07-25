@@ -52,7 +52,6 @@ router.get('/admin/logout', (req, res) => {
         // successRedirect : '/profile',
         failureRedirect : '/'
     }), function (req,res) {
-        console.log(req.user, "after add in monogo db");
 
         //for send text SMS using NEXMO service.
         const nexmo = new Nexmo({
@@ -81,7 +80,23 @@ router.get('/admin/logout', (req, res) => {
     router.get('/admin/callback/instagram', passport.authenticate('instagram',{
         failureRedirect : '/admin'
     }), function (req,res) {
-        console.log(req.user, "after add in monogo db");
+         //for send text SMS using NEXMO service.
+         const nexmo = new Nexmo({
+            apiKey: configAuth.nexmo.apiKey,
+            apiSecret: configAuth.nexmo.apiSecret
+        });
+        nexmo.message.sendSms(
+            '917890379068', '917278088825', 'Hey! Login successfully. ',(err, responseData) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.dir(responseData);
+                }
+            }
+        );
+        //end
+        
+        res.redirect("/admin/dashboard");
     });
 //end
 

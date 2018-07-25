@@ -12,6 +12,8 @@ const userSchema = new Schema({
     google_id: {type: String},
     google_token: {type: String},
     google_name: {type:String},
+    instagramId: {type:String},
+    instagram_name: {type:String},
     created_at: { type: Date, default: Date.now() }
 });
 

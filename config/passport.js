@@ -63,7 +63,6 @@ module.exports = passport => {
         // make the code asynchronous
         // User.findOne won't fire until we have all our data back from Google
         process.nextTick(function() {
-            console.log(profile,'google data');
             // try to find the user based on their google id
             User.findOne({ 'google_id' : profile.id }, function(err, user) {
                 if (err)
@@ -103,10 +102,27 @@ module.exports = passport => {
 
         // asynchronous verification, for effect...
         process.nextTick(function () {
-            console.log(profile,'instagram data');
-            return false;
-            User.findOrCreate({ instagramId: profile.id }, function (err, user) {
-            return done(err, user);
+            console.log(profile._json.data,'instagram data');
+            // return false;
+            User.findOne({ instagramId: profile._json.data.id }, function (err, user) {
+                if(err)
+                return done(err);
+                
+                if(user){
+                    return done(null, user);
+                }else{
+                    // if the user isnt in our database, create a new user
+                    var user = new User({
+                        login_type: 'instagram',
+                        avatar: profile._json.data.profile_picture,
+                        instagramId    : profile._json.data.id,
+                        instagram_name  : profile._json.data.displayName
+                    });
+
+                    if(user.save()){
+                        return done(null, user);
+                    }
+                }
             });
         });
       }

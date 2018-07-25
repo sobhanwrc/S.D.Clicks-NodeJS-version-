@@ -54,7 +54,15 @@ var hbs = exphbs.create({
             return opts.fn(this);
           else
             return opts.inverse(this);
-        }
+        },
+        inArray: function(array, value, block) {
+          if (array.indexOf(value) !== -1) {
+              return block.fn(this);
+          }
+          else {
+              return block.inverse(this);
+          }
+      },
     }
 });
 

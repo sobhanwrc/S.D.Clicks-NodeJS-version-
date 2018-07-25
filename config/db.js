@@ -4,7 +4,7 @@ module.exports = {
     'googleAuth' : {
         'clientID'      : '134597549822-pgp87uhaqpsaa4m2a3671k53g106dk82.apps.googleusercontent.com',
         'clientSecret'  : 'PdToTCGKeeRXZnFRAWDOUVGw',
-        'callbackURL'   : 'http://localhost:5000/admin/callback/google'
+        'callbackURL'   : 'http://localhost:7000/admin/callback/google'
     },
 
     'nexmo' :{
